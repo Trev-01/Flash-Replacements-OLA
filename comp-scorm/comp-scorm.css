@@ -1,0 +1,186 @@
+/*Rule for the header at the top of the page for the setup screen (with the instructions)*/
+.setupheader {
+	padding:  7.5px;
+	background: linear-gradient(to right, #203354, #B6D0E2);	/*navy blue to powder blue*/	
+	color: white;
+	font-size: 18px;
+}
+
+
+/*
+ * headeralignleft: rule to float the word "compounding" to the left
+ * headeralignright:  rule to float the word "instructions" to the right
+ */
+#headeralignleft {
+	float: left;
+}
+
+#headeralignright {
+	float: right;
+}
+
+
+/*Rule for the div element "boxing" or containing all of the content displayed to the screen*/
+#masterbox {
+	margin: auto;
+	width:  800px;
+	text-align: left;
+	border: 2px solid black;
+	box-sizing: border-box;
+}
+
+
+/*Rule for the instructions text on the setup screen*/
+.setuptext {
+	font-size: 18px;
+	margin:  5px;
+}
+
+
+/**/
+.playarea {
+	margin: 20px;
+}
+
+
+#bigword {
+	font-size:  28px;
+	color:  #767676;
+	margin: 0;
+	margin-left: 50px;
+	padding: 0;
+}
+
+hr {
+	width: 40%;
+	margin-left: 50px;
+}
+
+.dropdowntree {
+	margin:  15px;
+}
+
+.dropdown {
+	display:  block;
+	width: fit-content;
+	position: relative;
+	border-radius: 15px;
+	font-size: 16px;
+	margin: auto;
+}
+
+.select-label {
+	font-size: 24px;
+	color:  #767676;
+}
+
+
+.bottom-total {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.bottom {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 20px;
+	margin-bottom: 30px;
+	margin-top: 75px;
+}
+
+
+
+/**********Rules for the footer**********/
+
+/*Encompassing div element for the entire bottom footer with the three buttons*/
+.setupfooter {
+	display: flex;
+	justify-content: space-around;
+	padding: 7.5px;
+}
+
+
+/*Rule for the all images used in the footer:  the question mark, the 'next' icon, and the checkmark*/
+.fimg {
+	max-width:  125px;
+	max-height: 35px;
+	opacity: 1;
+	display:  block;
+	transition:  .5s ease;
+	backface-visibility: hidden;
+	width: auto;
+	height: auto;
+	margin:  0 auto;
+}
+
+
+/*Rules for all buttons in the footer:  instructions, next, and check*/
+.fbutton {
+	background-color: transparent;
+	background-repeat: no-repeat;
+	border: none;
+	cursor: pointer;
+	overflow: hidden;
+	display: inline-block;
+	height: 50px;
+	font-size: 15px;
+	text-align:justify;
+
+	transition-duration: 0.4s;
+}
+
+
+/*If hovering over the button and the button is not disabled*/
+.fbutton:hover:enabled {
+	background-color: #d3d3d3;	/*light grey*/;
+}
+
+
+/*If the button has been clicked or has had some event applied to it and is not disabled*/
+.fbutton:active:enabled {
+	background-color: #d3d3d3;
+	box-shadow:  0 5px #666;
+	transform:  translateY(4px);
+}
+
+
+/* Default styling rules for the modal template */
+.modal-template {
+	display: none;
+	position:  fixed;
+	z-index: 1;
+	top: 0;
+	left:  24%;
+	width: 800px;
+	height: 200px;
+	overflow: auto;
+	background-color:  rgb(0,0,0);
+	background-color:  rgba(0,0,0,0.4);
+	margin:  0 auto;
+	padding:  2px;
+}
+
+.modal-content {
+	background-color: #fefefe;
+	margin: 0 auto;
+	padding: 2px;
+	border: 1px solid #B6D0E2;
+	width:  80%;
+}
+
+.close {
+	color:  #aaa;
+	float:  right;
+	font-size:  28px;
+	font-weight:  bold;
+}
+
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
