@@ -57,12 +57,12 @@ const words = [
 	new Compound("fish tank", "fish", "tank", lCat.NOUN, lCat.NOUN, lCat.NOUN),
 	new Compound("rainfall", "rain", "fall", lCat.NOUN, lCat.NOUN, lCat.VERB),
 	new Compound("drainboard", "drain", "board", lCat.NOUN, lCat.VERB, lCat.NOUN),
-	new Compound("dry cleaning", "dry", "cleaning", lCat.NOUN, lCat.ADJV, lCat.VERB),
-	new Compound("firefighter", "fire", "fighter", lCat.NOUN, lCat.NOUN, lCat.NOUN),
+	new Compound("dry-cleaning", "dry", "cleaning", lCat.NOUN, lCat.ADJV, lCat.VERB),
+	new Compound("fire fighter", "fire", "fighter", lCat.NOUN, lCat.NOUN, lCat.NOUN),
 
 	new Compound("hangover", "hang", "over", lCat.NOUN, lCat.VERB, lCat.PREP),
 	new Compound("hot dog", "hot", "dog", lCat.NOUN, lCat.ADJV, lCat.NOUN),
-	new Compound("low cut", "low", "cut", lCat.ADJV, lCat.ADJV, lCat.VERB),
+	new Compound("low-cut", "low", "cut", lCat.ADJV, lCat.ADJV, lCat.VERB),
 	new Compound("bystander", "by", "stander", lCat.NOUN, lCat.PREP, lCat.NOUN),
 	new Compound("haircut", "hair", "cut", lCat.NOUN, lCat.NOUN, lCat.VERB),
 	
@@ -72,7 +72,7 @@ const words = [
 	new Compound("serving platter", "serving", "platter", lCat.NOUN, lCat.VERB, lCat.NOUN),
 	new Compound("blackboard", "black", "board", lCat.NOUN, lCat.ADJV, lCat.NOUN),
 
-	new Compound("overpass", "over", "pass", lCat.NOUN, lCat.ADJV, lCat.NOUN),
+	new Compound("overpass", "over", "pass", lCat.NOUN, lCat.PREP, lCat.VERB),
 	new Compound("swimming pool", "swimming", "pool", lCat.NOUN, lCat.VERB, lCat.NOUN),
 	new Compound("redhead", "red", "head", lCat.NOUN, lCat.ADJV, lCat.NOUN),
 	new Compound("public speaking", "public", "speaking", lCat.NOUN, lCat.ADJV, lCat.VERB),
@@ -225,9 +225,15 @@ function check() {
 			&& ddCompLeft.value == wordLeft[1]
 			&& ddCompRight.value == wordRight[1]) {
 
-		showModal("Correct. You may continue to the next question.");
-		nextBtn.disabled = false;
-		checkBtn.disabled = true;
+		if (qCount == TOTAL_QS) {
+			end();
+			nextBtn.disabled = false;
+			checkBtn.disabled = true;
+		} else {
+			showModal("Correct. You may continue to the next question.");
+			nextBtn.disabled = false;
+			checkBtn.disabled = true;
+		}
 	
 	} else {
 		if (attempts == 0) {
@@ -262,6 +268,9 @@ function next() {
 	if (qCount == 0)
 		clearAndFit();
 
+	else if (qCount == TOTAL_QS)
+		document.getElementById("master-list").innerHTML = "";
+
 	else {
 		countUp();
 		fetch();
@@ -274,3 +283,10 @@ function next() {
 	}
 }
 
+
+/*
+ * Shows the finish modal and screen
+*/
+function end() {
+	showModal("Congratulations! You have completed the exercise. Press the 'next' button to continue.");
+}
