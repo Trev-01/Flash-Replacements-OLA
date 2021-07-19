@@ -1,67 +1,78 @@
-/*Rule for the header at the top of the page for the setup screen (with the instructions)*/
-.setupheader {
-	padding:  7.5px;
-	background: linear-gradient(to right, #203354, #B6D0E2);	/*navy blue to powder blue*/	
-	color: white;
-	font-size: 18px;
-}
-
-
-/*
- * headeralignleft: rule to float the word "compounding" to the left
- * headeralignright:  rule to float the word "instructions" to the right
- */
-#headeralignleft {
-	float: left;
-}
-
-#headeralignright {
-	float: right;
-}
-
-
-/*Rule for the div element "boxing" or containing all of the content displayed to the screen*/
-#masterbox {
+/* [1] Rule for the game box */
+#game-box {
 	margin: auto;
-	width:  800px;
+	width: 800px;
 	text-align: left;
 	border: 2px solid black;
 	box-sizing: border-box;
 }
 
 
-/*Rule for the instructions text on the setup screen*/
-.setuptext {
+/* [2] Rule for the game header */
+#game-header {
+	padding: 7.5px;
+
+	/*navy blue to powder blue*/
+	background: linear-gradient(to right, #203354, #B6D0E2);	
+
+	color: white;
 	font-size: 18px;
-	margin:  5px;
 }
 
 
-/**/
-.playarea {
+/* [2.1] Rule for the left text in the game header */
+#header-left {
+	float: left;
+}
+
+
+/* [2.2] Rule for the right text in the game header */
+#header-right {
+	float: right;
+}
+
+
+/* [3] Rule for the setup text */
+#setup-text {
+	font-size: 18px;
+	margin: 5px;
+}
+
+
+/* [4] Rule for the play area */
+#play-area {
 	margin: 20px;
 }
 
 
-#bigword {
+/* [4.1] Rule for the main word */
+#main-word {
 	font-size:  28px;
-	color:  #767676;
+
+	/* light grey */
+	color:  #767676;	
+	
 	margin: 0;
 	margin-left: 50px;
-	padding: 0;
+	padding: 0;	
 }
+
 
 hr {
 	width: 40%;
 	margin-left: 50px;
 }
 
-.dropdowntree {
-	margin:  15px;
+
+/* [4.2] Rule for the drop down tree */
+#dd-tree {
+	margin: 20px;
 }
 
+
+/* [4.2.1] Rule for the drop downs */
 .dropdown {
-	display:  block;
+	display: block;
 	width: fit-content;
 	position: relative;
 	border-radius: 15px;
@@ -69,20 +80,18 @@ hr {
 	margin: auto;
 }
 
-.select-label {
-	font-size: 24px;
-	color:  #767676;
-}
 
-
-.bottom-total {
+/* [4.2.2] Rule for the bottom drop down cluster  */
+#dd-bottom {
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-evenly;
-	align-items: center;
+	align-items: center;	
 }
 
-.bottom {
+
+/* [4.2.2.1] Rule for the inner bottom <div> elements  */
+.dd-bottom-inner {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -93,32 +102,22 @@ hr {
 }
 
 
+/*[4.2.2.1.1] Rule for the bottom drop down labels*/
+.list-label {
+	font-size: 24px;
+	color:  #767676;	
+}
 
-/**********Rules for the footer**********/
 
-/*Encompassing div element for the entire bottom footer with the three buttons*/
-.setupfooter {
+/* [5] Rule for the button footer */
+#game-footer {
 	display: flex;
 	justify-content: space-around;
-	padding: 7.5px;
+	padding: 7.5px;	
 }
 
 
-/*Rule for the all images used in the footer:  the question mark, the 'next' icon, and the checkmark*/
-.fimg {
-	max-width:  125px;
-	max-height: 35px;
-	opacity: 1;
-	display:  block;
-	transition:  .5s ease;
-	backface-visibility: hidden;
-	width: auto;
-	height: auto;
-	margin:  0 auto;
-}
-
-
-/*Rules for all buttons in the footer:  instructions, next, and check*/
+/* [5.1] Rule for the buttons */
 .fbutton {
 	background-color: transparent;
 	background-repeat: no-repeat;
@@ -130,7 +129,7 @@ hr {
 	font-size: 15px;
 	text-align:justify;
 
-	transition-duration: 0.4s;
+	transition-duration: 0.4s;	
 }
 
 
@@ -148,7 +147,21 @@ hr {
 }
 
 
-/* Default styling rules for the modal template */
+/* [5.1.1] Rule for the nested button images  */
+.fimg {
+	max-width:  125px;
+	max-height: 35px;
+	opacity: 1;
+	display:  block;
+	transition:  .5s ease;
+	backface-visibility: hidden;
+	width: auto;
+	height: auto;
+	margin:  0 auto;
+}
+
+
+/* [6] Rule for the modal template */
 .modal-template {
 	display: none;
 	position:  fixed;
@@ -168,7 +181,7 @@ hr {
 	background-color: #fefefe;
 	margin: 0 auto;
 	padding: 2px;
-	border: 1px solid #B6D0E2;
+	border: 1px solid ##B6D0E2;
 	width:  80%;
 }
 
