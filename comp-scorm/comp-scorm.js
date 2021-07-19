@@ -112,9 +112,9 @@ var ddCompRight = document.getElementById("right-list");
 function countUp() {
 	qCount++;
 	document.getElementById("header-right").innerHTML = "Question "
-														  + qCount.toString()
-														  + " of "
-														  + TOTAL_QS.toString();	
+													+ qCount.toString()
+													+ " of "
+													+ TOTAL_QS.toString();	
 }
 
 
@@ -170,6 +170,29 @@ function fetch() {
 }
 
 
+/*
+ * Unpacks the enum key by mapping it to its value
+*/ 
+function mapToValue(key) {
+	val = "select a type";
+	switch (key) {
+		case lCat.NOUN:
+			val = "Noun";
+			break;
+		case lCat.VERB:
+			val = "Verb";
+			break;
+		case lCat.PREP:
+			val = "Preposition";
+			break;
+		case lCat.ADJV:
+			val = "Adjective";
+			break;
+	}
+	return val;
+}
+
+
 /* 
  * Clears instructions and shrinks div bounding box to fit remaining content
  * Disables and enables select buttons
@@ -202,8 +225,7 @@ function check() {
 			&& ddCompLeft.value == wordLeft[1]
 			&& ddCompRight.value == wordRight[1]) {
 
-		const CORRECT = "Correct. You may continue to the next question.";
-		showModal(CORRECT);
+		showModal("Correct. You may continue to the next question.");
 		nextBtn.disabled = false;
 		checkBtn.disabled = true;
 	
@@ -219,10 +241,13 @@ function check() {
 	  		nextBtn.disabled = false;
 			checkBtn.disabled = true;
 
+			ddWord.value = mapToValue(wordPair[1]);
+			ddCompLeft.value = mapToValue(wordLeft[1]);
+			ddCompRight.value = mapToValue(wordRight[1]);
+
 		} else {
 			attempts--;
-			const INCORRECT = "Not quite. Try again."
-			showModal(INCORRECT);
+			showModal("Not quite. Try again.");
 		}
 	}
 }
@@ -244,6 +269,8 @@ function next() {
 
 		nextBtn.disabled = true;
 		checkBtn.disabled = false;
+
+		attempts = 2;
 	}
 }
 
