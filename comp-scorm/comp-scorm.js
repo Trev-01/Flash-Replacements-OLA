@@ -95,7 +95,7 @@ var checkBtn = document.getElementById("check-button");
 
 
 // Modal template elements (<div> and <span>)
-var modal = document.getElementById("ins-modal");
+var modal = document.getElementById("modal-template");
 var span = document.getElementsByClassName("close")[0];
 var modalText = document.getElementById("modal-text");
 
@@ -119,17 +119,16 @@ function countUp() {
 
 
 // Displays reusable modal template with specific input text when requested
-function showModal(inputtxt) {
+function showModal(inputtxt, isShort) {
 	modalText.innerHTML = inputtxt;
 	modal.style.display = "block";
+	document.body.style.overflow = "hidden";
+
+	modal.style.textAlign = (isShort) ? "center" : "left";
 
 	span.onclick = function() {
 		modal.style.display = "none";
-	}
-
-	window.onclick = function(event) {
-		if (event.target == modal) 
-			modal.style.display = "none";
+		document.body.style.overflow = "auto";
 	}
 }
 
@@ -144,7 +143,7 @@ function showInstructions() {
 					   +  "To determine if your solution is correct, click the 'check' button. "
 					   +  "You will have three opportunities to analyze the word correctly, after which "
 					   +  "the correct answer will be provided for you.";
-	showModal(INSTRUCTIONS);
+	showModal(INSTRUCTIONS, false);
 }
 
 
@@ -174,7 +173,7 @@ function fetch() {
  * Unpacks the enum key by mapping it to its value
 */ 
 function mapToValue(key) {
-	val = "select a type";
+	var val = "select a type";
 	switch (key) {
 		case lCat.NOUN:
 			val = "Noun";
@@ -188,6 +187,7 @@ function mapToValue(key) {
 		case lCat.ADJV:
 			val = "Adjective";
 			break;
+		default: break;
 	}
 	return val;
 }
@@ -230,7 +230,7 @@ function check() {
 			nextBtn.disabled = false;
 			checkBtn.disabled = true;
 		} else {
-			showModal("Correct. You may continue to the next question.");
+			showModal("Correct. You may continue to the next question.", true);
 			nextBtn.disabled = false;
 			checkBtn.disabled = true;
 		}
@@ -243,7 +243,7 @@ function check() {
 						 + wordLeft[1] 
 						 + " + "
 						 + wordRight[1];
-	  		showModal(ANSWER);
+	  		showModal(ANSWER, true);
 	  		nextBtn.disabled = false;
 			checkBtn.disabled = true;
 
@@ -253,7 +253,7 @@ function check() {
 
 		} else {
 			attempts--;
-			showModal("Not quite. Try again.");
+			showModal("Not quite. Try again.", true);
 		}
 	}
 }
@@ -288,5 +288,5 @@ function next() {
  * Shows the finish modal and screen
 */
 function end() {
-	showModal("Congratulations! You have completed the exercise. Press the 'next' button to continue.");
+	showModal("Congratulations! You have completed the exercise. Press the 'next' button to continue.", true);
 }

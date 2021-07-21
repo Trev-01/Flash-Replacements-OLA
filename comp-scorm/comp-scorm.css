@@ -1,7 +1,7 @@
 /* [1] Rule for the game box */
 #game-box {
 	margin: auto;
-	width: 800px;
+	width: 75%;
 	text-align: left;
 	border: 2px solid black;
 	box-sizing: border-box;
@@ -162,33 +162,36 @@ hr {
 
 
 /* [6] Rule for the modal template */
-.modal-template {
-	display: none;
-	position:  fixed;
-	z-index: 1;
-	top: 0;
-	left:  24%;
-	width: 800px;
-	height: 200px;
-	overflow: auto;
-	background-color:  rgb(0,0,0);
-	background-color:  rgba(0,0,0,0.4);
-	margin:  0 auto;
-	padding:  2px;
-}
-
 .modal-content {
-	background-color: #fefefe;
+	display: none;
+	position: fixed;
+	top: 25%;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1;
+	background-color: #fafafa;
 	margin: 0 auto;
-	padding: 2px;
-	border: 1px solid #B6D0E2;
-	width:  80%;
+	border: 3px solid #203354; /*#B6D0E2;*/
+	max-width:  70%;
+	padding: 4px;
+	height: fit-content;
+	text-align: center;
 }
 
+/* [6.1] Rule for the modal text <p> element*/
+#modal-text {
+	font-size: 18px;
+	padding: 6px;
+}
+
+
+/* [6.2] Rule for the word "close" on the bottom-right of the screen*/
 .close {
+	position: absolute;
 	color:  #aaa;
-	float:  right;
-	font-size:  28px;
+	right: 0;
+	bottom: 0;
+	font-size:  14px;
 	font-weight:  bold;
 }
 
