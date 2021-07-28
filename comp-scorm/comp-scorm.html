@@ -58,13 +58,15 @@
 			<div id="dd-tree">
 
 				<!-- Top dropdown for the main-word -->
-				<select id="main-list", class="dropdown">
-					<option value="select a type">select a type</option>
-					<option value="Noun" selected>Noun</option>
-					<option value="Verb">Verb</option>
-					<option value="Preposition">Preposition</option>
-					<option value="Adjective">Adjective</option>					
-				</select>
+				<div id="dd-main">
+					<select id="main-list", class="dropdown">
+						<option value="Word Category" disabled>Word Category</option>
+						<option value="Noun" selected>Noun</option>
+						<option value="Verb">Verb</option>
+						<option value="Preposition">Preposition</option>
+						<option value="Adjective">Adjective</option>					
+					</select>
+				</div>
 
 
 				<!-- <div> element to encompass both of the bottom dropdown -->
@@ -72,26 +74,33 @@
 
 					<!-- <div> element for bottom left dropdown for the first component -->
 					<div class="dd-bottom-inner">
-						<select id="left-list" class="dropdown">
-							<option value="select a type">select a type</option>
-							<option value="Noun">Noun</option>
-							<option value="Verb" selected>Verb</option>
-							<option value="Preposition">Preposition</option>
-							<option value="Adjective">Adjective</option>	
-						</select>
+
+						<!-- <div> class element wrapping ONLY the bottom dropdowns -->
+						<div class="dropdown-style">
+							<select id="left-list" class="dropdown">
+								<option value="Word Category" disabled>Word Category</option>
+								<option value="Noun">Noun</option>
+								<option value="Verb" selected>Verb</option>
+								<option value="Preposition">Preposition</option>
+								<option value="Adjective">Adjective</option>	
+							</select>
+						</div>
 
 						<label id="left-label" class="list-label" for="left-list">make</label>
 					</div>
 
 					<!-- <div> element for bottom right dropdown for the second component -->
 					<div class="dd-bottom-inner">
-						<select id="right-list" class="dropdown">
-							<option value="select a type">select a type</option>
-							<option value="Noun">Noun</option>
-							<option value="Verb">Verb</option>
-							<option value="Preposition" selected>Preposition</option>
-							<option value="Adjective">Adjective</option>	
-						</select>
+						<!-- <div> class element wrapping ONLY the bottom dropdowns -->
+						<div class="dropdown-style">
+							<select id="right-list" class="dropdown">
+								<option value="Word Category" disabled>Word Category</option>
+								<option value="Noun">Noun</option>
+								<option value="Verb">Verb</option>
+								<option value="Preposition" selected>Preposition</option>
+								<option value="Adjective">Adjective</option>	
+							</select>
+						</div>
 
 						<label id="right-label" class="list-label" for="right-list">up</label>
 					</div>
@@ -115,10 +124,20 @@
 
 
 		<!-- <div> element for modals with long content -->
-		<div id="modal-template" class="modal-content">
+		<div id="modal-template" class="modal-content"> 
 			<span class="close">close</span>
 			<p id="modal-text"></p>
 		</div>	
+
+
+		<!-- <div> element for the blurred background on showing the modal -->
+		<div id="blocker"></div>
+
+		<!-- <svg> element to contain the lines -->
+		<svg id="line-svg" version="1.1" xmlns="http://www.w3.org/2000/svg">
+			<line id="line-left" class="tree-lines"></line>
+		    <line id="line-right" class="tree-lines"></line>
+		</svg>
 
 
         <!-- Links JS file -->

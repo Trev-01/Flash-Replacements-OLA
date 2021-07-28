@@ -98,6 +98,7 @@ var checkBtn = document.getElementById("check-button");
 var modal = document.getElementById("modal-template");
 var span = document.getElementsByClassName("close")[0];
 var modalText = document.getElementById("modal-text");
+var blocker = document.getElementById("blocker");
 
 
 // Dropdown elements(<select>)
@@ -122,13 +123,15 @@ function countUp() {
 function showModal(inputtxt, isShort) {
 	modalText.innerHTML = inputtxt;
 	modal.style.display = "block";
-	document.body.style.overflow = "hidden";
+	document.body.classList.add("overflow-hidden");
 
 	modal.style.textAlign = (isShort) ? "center" : "left";
+	blocker.style.display = "block";
 
 	span.onclick = function() {
 		modal.style.display = "none";
-		document.body.style.overflow = "auto";
+		blocker.style.display = "none";
+		document.body.classList.remove("overflow-hidden");
 	}
 }
 
@@ -148,9 +151,8 @@ function showInstructions() {
 
 
 /*
- * Changes values in the dropdown to the default "select a type"
+ * Changes values in the dropdown to the default "Word Category"
 */
-
 function setToDefault() {
 	ddWord.selectedIndex = 0;
 	ddCompLeft.selectedIndex = 0;
@@ -173,7 +175,7 @@ function fetch() {
  * Unpacks the enum key by mapping it to its value
 */ 
 function mapToValue(key) {
-	var val = "select a type";
+	var val = "Word Category";
 	switch (key) {
 		case lCat.NOUN:
 			val = "Noun";
@@ -209,6 +211,15 @@ function clearAndFit() {
 
 	fetch();
 	setToDefault();
+	makeLines();
+}
+
+
+/*
+ * Shows the finish modal and screen
+*/
+function end() {
+	showModal("Congratulations! You have completed the exercise. Press the 'next' button to continue.", true);
 }
 
 
@@ -259,7 +270,6 @@ function check() {
 }
 
 
-
 /* 
  * if count is 0: calls clearAndFit()
  * else: fetches new words, updates screen
@@ -275,6 +285,7 @@ function next() {
 		countUp();
 		fetch();
 		setToDefault();
+		makeLines();
 
 		nextBtn.disabled = true;
 		checkBtn.disabled = false;
@@ -285,8 +296,92 @@ function next() {
 
 
 /*
- * Shows the finish modal and screen
+ * Arrow function getting the width and height of an Element using getBoundingClientRect()
+ * See MDN: https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
+ */
+let dims = (el) => ({width: el.getBoundingClientRect().width, 
+						   height: el.getBoundingClientRect().height});
+
+
+/*
+* Gets the lower midpoint of the passed in element based on offset
+* Access returned x coordinate via .mx, and y coordinate with .my 
 */
-function end() {
-	showModal("Congratulations! You have completed the exercise. Press the 'next' button to continue.", true);
+function lMidOf(elem) {
+	let rect = elem.getBoundingClientRect();
+	return ({ mx: rect.left + dims(elem).width / 2,
+	          my: rect.bottom});
 }
+
+
+/*
+ * Gets the upper midpoint of the passed in element based on offset
+ */
+function uMidOf(elem) {
+	let rect = elem.getBoundingClientRect();
+	return ({ mx: rect.left + dims(elem).width / 2,
+	          my: rect.top })
+}
+
+
+/*
+ * Helper function to set attributes of an element without multiple calls to Element.setAttribute()
+ */
+ function setAttributes(elem, attrs) {
+ 	for (let key in attrs) {
+ 		elem.setAttribute(key, attrs[key])
+ 	}
+ }
+
+
+/*
+ * SVG container lines
+ */
+ var l1 = document.getElementById("line-left");
+ var l2 = document.getElementById("line-right");
+
+
+/*
+* Draws an SVG line at the given position
+*/
+function makeLines() {
+	let rootPos = lMidOf(ddWord),
+	    leftLeafPos = uMidOf(ddCompLeft),
+	    rightLeafPos = uMidOf(ddCompRight);
+
+   setAttributes(l1, 
+   	      {
+   	     		"x1": rootPos.mx,
+   	     		"x2": leftLeafPos.mx,
+   	     		"y1": rootPos.my,
+   	     		"y2": leftLeafPos.my
+   	      });
+
+   setAttributes(l2,
+   			{
+   	     		"x1": rootPos.mx,
+   	     		"x2": rightLeafPos.mx,
+   	     		"y1": rootPos.my,
+   	     		"y2": rightLeafPos.my   				
+   			});
+}
+
+
+
+/*
+ * Animate the dropdowns when the game loads
+ */
+ function runDemo() {
+ 	
+ }
+
+
+/* 
+ * Generate lines onload and show tree animation, and regenerate positions on window resize event
+ */
+window.onload = function() {
+	makeLines();
+	runDemo();
+}
+window.onresize = makeLines;
+
