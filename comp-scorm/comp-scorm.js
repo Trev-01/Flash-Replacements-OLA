@@ -295,13 +295,6 @@ function next() {
 }
 
 
-/*
- * Arrow function getting the width and height of an Element using getBoundingClientRect()
- * See MDN: https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
- */
-let dims = (el) => ({width: el.getBoundingClientRect().width, 
-						   height: el.getBoundingClientRect().height});
-
 
 /*
 * Gets the lower midpoint of the passed in element based on offset
@@ -309,7 +302,7 @@ let dims = (el) => ({width: el.getBoundingClientRect().width,
 */
 function lMidOf(elem) {
 	let rect = elem.getBoundingClientRect();
-	return ({ mx: rect.left + dims(elem).width / 2,
+	return ({ mx: rect.left + rect.width / 2,
 	          my: rect.bottom});
 }
 
@@ -319,7 +312,7 @@ function lMidOf(elem) {
  */
 function uMidOf(elem) {
 	let rect = elem.getBoundingClientRect();
-	return ({ mx: rect.left + dims(elem).width / 2,
+	return ({ mx: rect.left + rect.width / 2,
 	          my: rect.top })
 }
 
