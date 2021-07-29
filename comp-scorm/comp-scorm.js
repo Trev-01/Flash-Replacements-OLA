@@ -376,5 +376,6 @@ window.onload = function() {
 	makeLines();
 	runDemo();
 }
+
 window.onresize = makeLines;
 
