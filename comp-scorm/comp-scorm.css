@@ -249,3 +249,12 @@ hr {
 	stroke: #000000;
 	position: absolute;
 }
+
+
+/*
+ * [9] Rule for the in-game circle backgrounds
+*/
+.circle-bg {
+	display: none;
+	fill: #ededed;
+}

@@ -30,7 +30,7 @@ class Compound {
 }
 
 
-// Literal enum type for lexical categories
+// Literal object type representing an enumeration (enum) for lexical categories
 const lCat = {
 	NOUN: "Noun",
 	VERB: "Verb",
@@ -82,32 +82,20 @@ const words = [
 ];
 
 
-// Word containers (<p> elements) to be updated every "next" iteration
-var word = document.getElementById("main-word");
-var cLeft = document.getElementById("left-label");
-var cRight = document.getElementById("right-label");
-
-
 // Button elements (<button>)
-var nextBtn = document.getElementById("next-button");
-var instrBtn = document.getElementById("ins-button");
-var checkBtn = document.getElementById("check-button");
-
-
-// Modal template elements (<div> and <span>)
-var modal = document.getElementById("modal-template");
-var span = document.getElementsByClassName("close")[0];
-var modalText = document.getElementById("modal-text");
-var blocker = document.getElementById("blocker");
+var nextBtn = document.getElementById("next-button"),
+    instrBtn = document.getElementById("ins-button"),
+    checkBtn = document.getElementById("check-button");
 
 
 // Dropdown elements(<select>)
-var ddWord = document.getElementById("main-list");
-var ddCompLeft = document.getElementById("left-list");
-var ddCompRight = document.getElementById("right-list");
+var ddWord = document.getElementById("main-list"),
+    ddCompLeft = document.getElementById("left-list"),
+    ddCompRight = document.getElementById("right-list");
 
 
-// FUNCTIONS
+
+//************ FUNCTIONS ************//
 
 // Updates count variable and changes the aligned-right text in the header
 function countUp() {
@@ -121,14 +109,18 @@ function countUp() {
 
 // Displays reusable modal template with specific input text when requested
 function showModal(inputtxt, isShort) {
-	modalText.innerHTML = inputtxt;
+	let modal = document.getElementById("modal-template"),
+	    blocker = document.getElementById("blocker");
+
+
+	document.getElementById("modal-text").innerHTML = inputtxt;
 	modal.style.display = "block";
 	document.body.classList.add("overflow-hidden");
 
 	modal.style.textAlign = (isShort) ? "center" : "left";
 	blocker.style.display = "block";
 
-	span.onclick = function() {
+	document.getElementsByClassName("close")[0].onclick = function() {
 		modal.style.display = "none";
 		blocker.style.display = "none";
 		document.body.classList.remove("overflow-hidden");
@@ -138,7 +130,7 @@ function showModal(inputtxt, isShort) {
 
 // Shows the instructions in the modal
 function showInstructions() {
-	const INSTRUCTIONS =  "The following exercise will give you practice with compounding. " 
+	let INSTRUCTIONS =  "The following exercise will give you practice with compounding. " 
 					   +  "You will be presented in the following screens with a series of words, "
 					   +  "for which you will have to perform the following task: Identify the " 
 					   +  "lexical categories for each component word as well as the compound word. "
@@ -151,23 +143,20 @@ function showInstructions() {
 
 
 /*
- * Changes values in the dropdown to the default "Word Category"
-*/
-function setToDefault() {
-	ddWord.selectedIndex = 0;
-	ddCompLeft.selectedIndex = 0;
-	ddCompRight.selectedIndex = 0;
-}
-
-
-/*
  * Fetches a word in the words list given current value of qCount	
 */
 function fetch() {
-	const wordObj = words[qCount - 1];
-	word.innerHTML = wordObj.getWordPair()[0];
-	cLeft.innerHTML = wordObj.getLeftPair()[0];
-	cRight.innerHTML = wordObj.getRightPair()[0];
+	let wordObj = words[qCount - 1];
+	document.getElementById("main-word").textContent = wordObj.getWordPair()[0];
+	document.getElementById("left-label").textContent = wordObj.getLeftPair()[0];
+	document.getElementById("right-label").textContent = wordObj.getRightPair()[0];
+
+	nextBtn.disabled = true;
+	checkBtn.disabled = false;
+
+	ddWord.selectedIndex = 0;
+	ddCompLeft.selectedIndex = 0;
+	ddCompRight.selectedIndex = 0;
 }
 
 
@@ -200,18 +189,16 @@ function mapToValue(key) {
  * Disables and enables select buttons
  */
 function clearAndFit() {
-	const parent = document.getElementById("setup-text");
+	let parent = document.getElementById("setup-text");
 	while (parent.firstChild) 
 		parent.removeChild(parent.lastChild);
 	countUp();
 
-	nextBtn.disabled = true;
 	instrBtn.disabled = false;
-	checkBtn.disabled = false;
 
 	fetch();
-	setToDefault();
 	makeLines();
+	//bubbleBack();
 }
 
 
@@ -227,10 +214,10 @@ function end() {
  * Checks if all dropdowns have the correct lexical categories for the current word
 */
 function check() {
-	const wordObj = words[qCount - 1];
-	const wordPair = wordObj.getWordPair();
-	const wordLeft = wordObj.getLeftPair();
-	const wordRight = wordObj.getRightPair();
+	let wordObj = words[qCount - 1],
+	    wordPair = wordObj.getWordPair(),
+	    wordLeft = wordObj.getLeftPair(),
+	    wordRight = wordObj.getRightPair();
 
 	if (ddWord.value == wordPair[1]
 			&& ddCompLeft.value == wordLeft[1]
@@ -248,7 +235,7 @@ function check() {
 	
 	} else {
 		if (attempts == 0) {
-			const ANSWER = "You look like you need some help.<br><br>" 
+			let ANSWER = "You look like you need some help.<br><br>" 
 						 + wordPair[1]
 						 + " = " 
 						 + wordLeft[1] 
@@ -284,16 +271,10 @@ function next() {
 	else {
 		countUp();
 		fetch();
-		setToDefault();
-		makeLines();
-
-		nextBtn.disabled = true;
-		checkBtn.disabled = false;
 
 		attempts = 2;
 	}
 }
-
 
 
 /*
@@ -328,45 +309,73 @@ function uMidOf(elem) {
 
 
 /*
- * SVG container lines
- */
- var l1 = document.getElementById("line-left");
- var l2 = document.getElementById("line-right");
+ * Helper Function to draw a single line
+*/
+function makeLine(svgLine, xs, xf, ys, yf) {
+	setAttributes(svgLine, 
+			{
+				"x1": xs,
+				"x2": xf,
+				"y1": ys,
+				"y2": yf
+			});
+}
 
 
 /*
 * Draws an SVG line at the given position
 */
 function makeLines() {
+	// SVG container lines
+	let l1 = document.getElementById("line-left"),
+	    l2 = document.getElementById("line-right");
+
+
 	let rootPos = lMidOf(ddWord),
 	    leftLeafPos = uMidOf(ddCompLeft),
 	    rightLeafPos = uMidOf(ddCompRight);
 
-   setAttributes(l1, 
-   	      {
-   	     		"x1": rootPos.mx,
-   	     		"x2": leftLeafPos.mx,
-   	     		"y1": rootPos.my,
-   	     		"y2": leftLeafPos.my
-   	      });
-
-   setAttributes(l2,
-   			{
-   	     		"x1": rootPos.mx,
-   	     		"x2": rightLeafPos.mx,
-   	     		"y1": rootPos.my,
-   	     		"y2": rightLeafPos.my   				
-   			});
+	makeLine(l1, rootPos.mx, leftLeafPos.mx, rootPos.my, leftLeafPos.my);
+	makeLine(l2, rootPos.mx, rightLeafPos.mx, rootPos.my, rightLeafPos.my);
 }
 
+
+/*
+ * Helper Function for drawing an SVG circle
+*/
+function makeCircle(svgCircle, centreX, centreY, radius) {
+	setAttributes(svgCircle, 
+			{
+				  "cx": centreX,
+				  "cy": centreY,
+				  "r" : radius
+			});
+}
+
+
+/*
+ * Draws the in-game 4-circle bubble background
+
+
+function bubbleBack() {
+    let circles = document.getElementsByClassName("circle-bg");
+    circles.forEach(circle => circle.style.display = "block");
+
+    let ctl = circles[0], 
+        cbl = circles[1], 
+        ctr = circles[2],
+        cbr = circles[3];
+
+    //makeCircle(ctl, )
+}*/
 
 
 /*
  * Animate the dropdowns when the game loads
- */
+ 
  function runDemo() {
  	
- }
+ }*/
 
 
 /* 
