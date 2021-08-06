@@ -32,94 +32,95 @@
 		<div id="game-box" align="center">
 
 
-		<!-- <div> element for the game header -->
-		<div id="game-header">
-			<h3 id="header-left">Compounding</h3>
-			<h3 id="header-right">Instructions</h3>
-			<div style="clear: both;"></div>
-		</div>
-
-
-		<!-- <div> element for the setup instructions text -->
-		<div id="setup-text">
-			<p class="ins-text">This is a learning task, not a test. It helps you explore compounding. Don't worry if you don't get it right the first time. The idea is to learn.</p>
-			<p class="ins-text">Identify the lexical category for each component word and for the compound word. To do this, simply select the appropriate lexical category from the drop down list.</p>
-			<p class="ins-text">To check your solution, click the "check" button. If you have answered correctly, move on to the next word by clicking on the next arrow at the bottom of the screen. Otherwise, try again. After three unsuccessful attempts, the correct answer will be provided for you.</p>			
-		</div>
-
-
-		<!-- <div> element for the play area (reusable HTML template) -->
-		<div id="play-area">
-			<p id="main-word">makeup</p>
-			<hr>
-
-
-			<!-- <div> element for the drop down tree in the play area -->
-			<div id="dd-tree">
-
-				<!-- Top dropdown for the main-word -->
-				<div id="dd-main">
-					<select id="main-list", class="dropdown">
-						<option value="Word Category" disabled>Word Category</option>
-						<option value="Noun" selected>Noun</option>
-						<option value="Verb">Verb</option>
-						<option value="Preposition">Preposition</option>
-						<option value="Adjective">Adjective</option>					
-					</select>
-				</div>
-
-
-				<!-- <div> element to encompass both of the bottom dropdown -->
-				<div id="dd-bottom">
-
-					<!-- <div> element for bottom left dropdown for the first component -->
-					<div class="dd-bottom-inner">
-
-						<!-- <div> class element wrapping ONLY the bottom dropdowns -->
-						<div class="dropdown-style">
-							<select id="left-list" class="dropdown">
-								<option value="Word Category" disabled>Word Category</option>
-								<option value="Noun">Noun</option>
-								<option value="Verb" selected>Verb</option>
-								<option value="Preposition">Preposition</option>
-								<option value="Adjective">Adjective</option>	
-							</select>
-						</div>
-
-						<label id="left-label" class="list-label" for="left-list">make</label>
-					</div>
-
-					<!-- <div> element for bottom right dropdown for the second component -->
-					<div class="dd-bottom-inner">
-						<!-- <div> class element wrapping ONLY the bottom dropdowns -->
-						<div class="dropdown-style">
-							<select id="right-list" class="dropdown">
-								<option value="Word Category" disabled>Word Category</option>
-								<option value="Noun">Noun</option>
-								<option value="Verb">Verb</option>
-								<option value="Preposition" selected>Preposition</option>
-								<option value="Adjective">Adjective</option>	
-							</select>
-						</div>
-
-						<label id="right-label" class="list-label" for="right-list">up</label>
-					</div>
-
-				</div>
-
+			<!-- <div> element for the game header -->
+			<div id="game-header">
+				<h3 id="header-left">Compounding</h3>
+				<h3 id="header-right">Instructions</h3>
+				<div style="clear: both;"></div>
 			</div>
 
-				<!-- <svg> element to contain the lines -->
-				<svg id="line-svg" version="1.1" xmlns="http://www.w3.org/2000/svg">
-					<line id="line-left" class="tree-lines"></line>
-				    <line id="line-right" class="tree-lines"></line>
 
-				    <circle id="circle-tl" class="circle-bg"></circle>
-				    <circle id="circle-bl" class="circle-bg"></circle>
-				    <circle id="circle-tr" class="circle-bg"></circle>
-				    <circle id="circle-br" class="circle-bg"></circle>
-				</svg>
+			<!-- <div> element for the setup instructions text -->
+			<div id="setup-text">
+				<p class="ins-text">This is a learning task, not a test. It helps you explore compounding. Don't worry if you don't get it right the first time. The idea is to learn.</p>
+				<p class="ins-text">Identify the lexical category for each component word and for the compound word. To do this, simply select the appropriate lexical category from the drop down list.</p>
+				<p class="ins-text">To check your solution, click the "check" button. If you have answered correctly, move on to the next word by clicking on the next arrow at the bottom of the screen. Otherwise, try again. After three unsuccessful attempts, the correct answer will be provided for you.</p>			
+			</div>
 
+
+			<!-- <div> element for the play area (reusable HTML template) -->
+			<div id="play-area">
+				<p id="main-word">makeup</p>
+				<hr>
+
+
+				<!-- <div> element for the drop down tree in the play area -->
+				<div id="dd-tree">
+
+					<!-- Top dropdown for the main-word -->
+					<div id="dd-main">
+						<select id="main-list", class="dropdown">
+							<option value="Word Category" disabled>Word Category</option>
+							<option value="Noun" selected>Noun</option>
+							<option value="Verb">Verb</option>
+							<option value="Preposition">Preposition</option>
+							<option value="Adjective">Adjective</option>					
+						</select>
+					</div>
+
+
+					<!-- <div> element to encompass both of the bottom dropdown -->
+					<div id="dd-bottom">
+
+						<!-- <div> element for bottom left dropdown for the first component -->
+						<div class="dd-bottom-inner">
+
+							<!-- <div> class element wrapping ONLY the bottom dropdowns -->
+							<div class="dropdown-style">
+								<select id="left-list" class="dropdown">
+									<option value="Word Category" disabled>Word Category</option>
+									<option value="Noun">Noun</option>
+									<option value="Verb" selected>Verb</option>
+									<option value="Preposition">Preposition</option>
+									<option value="Adjective">Adjective</option>	
+								</select>
+							</div>
+
+							<label id="left-label" class="list-label" for="left-list">make</label>
+						</div>
+
+						<!-- <div> element for bottom right dropdown for the second component -->
+						<div class="dd-bottom-inner">
+							<!-- <div> class element wrapping ONLY the bottom dropdowns -->
+							<div class="dropdown-style">
+								<select id="right-list" class="dropdown">
+									<option value="Word Category" disabled>Word Category</option>
+									<option value="Noun">Noun</option>
+									<option value="Verb">Verb</option>
+									<option value="Preposition" selected>Preposition</option>
+									<option value="Adjective">Adjective</option>	
+								</select>
+							</div>
+
+							<label id="right-label" class="list-label" for="right-list">up</label>
+						</div>
+
+					</div>
+
+				</div>
+
+					<!-- <svg> element to contain the lines -->
+					<svg id="line-svg" version="1.1" xmlns="http://www.w3.org/2000/svg">
+						<line id="line-left" class="tree-lines"></line>
+					    <line id="line-right" class="tree-lines"></line>
+
+					    <circle id="circle-tl" class="circle-bg"></circle>
+					    <circle id="circle-bl" class="circle-bg"></circle>
+					    <circle id="circle-tr" class="circle-bg"></circle>
+					    <circle id="circle-br" class="circle-bg"></circle>
+					</svg>
+
+			</div>
 		</div>
 
 

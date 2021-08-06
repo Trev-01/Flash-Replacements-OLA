@@ -83,13 +83,13 @@ const words = [
 
 
 // Button elements (<button>)
-var nextBtn = document.getElementById("next-button"),
+const nextBtn = document.getElementById("next-button"),
     instrBtn = document.getElementById("ins-button"),
     checkBtn = document.getElementById("check-button");
 
 
 // Dropdown elements(<select>)
-var ddWord = document.getElementById("main-list"),
+const ddWord = document.getElementById("main-list"),
     ddCompLeft = document.getElementById("left-list"),
     ddCompRight = document.getElementById("right-list");
 
