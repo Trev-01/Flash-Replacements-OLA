@@ -1,0 +1,180 @@
+<!doctype html>
+
+	<!-- HTML 5 boilerplate
+		* Sets language to English, character set to utf-8, and viewport of the page to the width of the device
+		* Setup for meta information: title [tab], description
+		* Setup for Open Graph (og) title, type, url, and description
+		* Links HTML file to CSS file
+	 -->
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+		<title>Compounding</title>
+		<meta name="description" content="Flash 32 Game: Compounding [ENGL]">
+
+		<meta property="og:title" content="Compounding">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="VALID_URL">
+		<meta property="og:description" content="Flash 32 Game: Compounding [ENGL]">
+
+		<link rel="stylesheet" href="comp-scorm-v2.css?v=1.0">
+	</head>
+
+	<!-- BEGIN BODY -->
+
+	<body>
+
+		<!-- <div> element for the bounding box of the game -->		
+		<div id="game-box" align="center">
+			
+			<!-- <div> element for the game header -->
+			<div id="game-header">
+				<h3 id="header-left" style="float: left;">Compounding</h3>
+				<h3 id="header-right" style="float: right;">Instructions</h3>
+				<div style="clear: both;"></div>
+			</div>
+
+
+			<!-- <div> element for the setup instructions text -->
+			<div id="setup-text">
+				<p class="ins-text">This is a learning task, not a test. It helps you explore compounding. Don't worry if you don't get it right the first time. The idea is to learn.</p>
+				<p class="ins-text">Identify the lexical category for each component word and for the compound word. To do this, simply select the appropriate lexical category from the drop down list.</p>
+				<p class="ins-text">To check your solution, click the "check" button. If you have answered correctly, move on to the next word by clicking on the next arrow at the bottom of the screen. Otherwise, try again. After three unsuccessful attempts, the correct answer will be provided for you.</p>	
+			</div>
+
+			<div id="play-area">
+				<p id="main-word">makeup</p>
+				<hr>
+
+				<!-- <div> element for the dropdown tree in the play area -->
+				<div id="dropdown-tree">
+
+					<!-- Custom dropdown template
+						* wrapper <div> (#XYZ-list-wrapper and .list-wrapper) to contain all of the internal <div> and <span> elements
+						* <div> elements (.list-select and .list-box) for the clickable box that opens like a drawer on click
+						* <span> containing the current selection of the user
+						* <div> representing the up/down pointer arrow
+						* <div> representing a vertical (downwards-facing) pullout drawer of options containing clickable <span> menu items
+					-->
+					
+					<!-- main list node -->
+					<div id="main-list-wrapper" class="list-wrapper">
+						<div class="list-select">
+							<div class="list-box"><span>Word Category</span>
+								<span class="arrow"></span>
+							</div>
+
+							<div id="main-options" class="list-options">
+								<span class="choice selected placeholder" data-value="Word Category">Word Category</span>
+								<span class="choice" data-value="Noun">Noun</span>
+								<span class="choice" data-value="Verb">Verb</span>
+								<span class="choice" data-value="Preposition">Preposition</span>
+								<span class="choice" data-value="Adjective">Adjective</span>
+							</div>	
+						</div>		 <!-- .list-select -->
+					</div> 			 <!-- #main-list-wrapper -->
+
+
+					<div id="bottom-lists">
+
+
+						<div class="bottom-list-inner">
+							<!-- left list node -->
+							<div id="left-list-wrapper" class="list-wrapper">
+								<div class="list-select">
+									<div class="list-box"><span>Word Category</span>
+										<span class="arrow"></span>
+									</div>
+
+									<div id="left-options" class="list-options">
+										<span class="choice selected placeholder" data-value="Word Category">Word Category</span>
+										<span class="choice" data-value="Noun">Noun</span>
+										<span class="choice" data-value="Verb">Verb</span>
+										<span class="choice" data-value="Preposition">Preposition</span>
+										<span class="choice" data-value="Adjective">Adjective</span>
+									</div>	
+								</div>		 <!-- .list-select -->
+
+							</div> 			 <!-- #left-list-wrapper -->
+
+							<p id="left-list-label" class="list-label">make</p>
+						</div>				 <!-- .bottom-list-inner -->
+
+
+						<div class="bottom-list-inner">
+							<!-- right list node -->
+							<div id="right-list-wrapper" class="list-wrapper">
+								<div class="list-select">
+									<div class="list-box"><span>Word Category</span>
+										<span class="arrow"></span>
+									</div>
+
+									<div id="right-options" class="list-options">
+										<span class="choice selected placeholder" data-value="Word Category">Word Category</span>
+										<span class="choice" data-value="Noun">Noun</span>
+										<span class="choice" data-value="Verb">Verb</span>
+										<span class="choice" data-value="Preposition">Preposition</span>
+										<span class="choice" data-value="Adjective">Adjective</span>
+									</div>	
+								</div>		 <!-- .list-select -->
+							</div> 			 <!-- #right-list-wrapper -->
+
+							<p id="right-list-label" class="list-label">up</p>
+						</div>				 <!-- .bottom-list-inner -->
+
+					</div>				 <!-- #bottom-lists -->
+
+				</div>	<!-- #dropdown-tree -->
+
+
+				<!-- <svg> element to contain the lines -->
+				<svg id="line-svg" version="1.1" xmlns="http://www.w3.org/2000/svg">
+					<line id="line-left" class="tree-lines"></line>
+				    <line id="line-right" class="tree-lines"></line>
+
+				    <circle id="circle-tl" class="circle-bg"></circle>
+				    <circle id="circle-bl" class="circle-bg"></circle>
+				    <circle id="circle-tr" class="circle-bg"></circle>
+				    <circle id="circle-br" class="circle-bg"></circle>
+				</svg>
+
+			</div>	<!-- #play-area --> 
+
+
+			<!-- <div> element for button footer -->
+			<div id="game-footer">
+				<button id="ins-button" class="fbutton" onclick="showInstructions()" disabled>
+					<img class="fimg" src="internal/instrbutton_img.png" align="left"/> Instructions</button>
+				<button id="next-button" class="fbutton" onclick="next()">
+					<img class="fimg" src="internal/nextbutton_img.png" align="left"/> Next</button>
+				<button id="check-button" class="fbutton" onclick="check()" disabled>
+					<img class="fimg" src="internal/checkbutton_img.png" align="left"/>Check</button>
+			</div>
+			
+
+		</div>	    <!-- #game-box -->
+
+
+		<!-- <div> element for modals with long content -->
+		<div id="modal-template" class="modal-content"> 
+			<span class="close">close</span>
+			<p id="modal-text"></p>
+		</div>	
+
+
+		<!-- <div> element for the blurred background on showing the modal -->
+		<div id="blocker"></div>
+
+		<!-- Javascript File -->
+		<script src="comp-scorm-v2.js"></script>
+		
+	</body>
+
+	<!-- END BODY -->
+
+</html>
+
+

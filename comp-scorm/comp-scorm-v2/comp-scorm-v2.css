@@ -1,0 +1,352 @@
+/* Rule for the game box */
+#game-box {
+	margin: auto;
+	width: 75%;
+	text-align: left;
+	border: 2px solid black;
+	box-sizing: border-box;
+}
+
+/* Rule for the game header */
+#game-header {
+	padding: 7.5px;
+	background: linear-gradient(to right, #203354, #B6D0E2);	/* navy blue to powder blue */
+	color: white;
+	font-size: 18px;
+}
+
+/* Rule for the setup text */
+#setup-text {
+	font-size: 18px;
+	margin: 5px;
+}
+
+/* Rule for the main word */
+#main-word {
+	font-size:  28px;
+
+	/* light grey */
+	color:  #767676;	
+	
+	margin: 0;
+	margin-left: 50px;
+	padding: 0;	
+}
+
+/* Rule for the horizontal line underneath the main word */
+hr {
+	width: 40%;
+	margin-left: 50px;
+}
+
+
+
+/****** BEGIN CSS DROPDOWN RULES ******/
+
+
+.list-wrapper {
+	position: relative;
+	user-select: none;
+	margin: auto;
+	display: block;
+	font-size: 18px;
+	width: max-content;
+}
+
+.list-wrapper:hover {
+	background-color: #f5ea92;
+}
+
+.list-select {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+	border: 2px solid #394a6d;
+}
+
+.list-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: fit-content;
+
+    cursor: pointer;
+    text-align: center;	
+    background: #ffffff;
+}
+
+
+.list-options {
+	position: absolute;
+	display: block;
+
+    border-width: 2px 0 2px 0;
+    border-style: solid;
+    border-color: #394a6d;
+    background: #fff;
+
+	transition: all 0.5s;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	z-index: 2;
+}
+
+
+.list-select.open .list-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+.choice {
+    position: relative;
+    display: block;
+    padding: 0 22px 0 22px;
+    font-size: 22px;
+    font-weight: 300;
+    color: #3b3b3b;
+    line-height: 60px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+
+.placeholder {
+    pointer-events: none;
+    user-select: none;
+    color:  #d3d3d3;
+}
+
+.choice:hover {
+    cursor: pointer;
+    background-color: #f5ea92;
+}
+
+
+.choice.selected {
+    color: #ffffff;
+    background-color: #f5dd29;
+}
+
+
+#main-list-wrapper {
+	margin-top: 20px;
+}
+
+
+#bottom-lists {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+
+.bottom-list-inner {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 20px;
+	margin-bottom: 30px;
+	margin-top: 75px;
+}
+
+
+.list-label {
+	font-size: 24px;
+	color:  #767676;	
+	margin-top: 0;
+}
+
+.arrow {
+	position: relative;
+	height: 10px;
+	width: 10px;
+	margin-left:  10px;
+	float: right;
+}
+
+.arrow::before, .arrow::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    width: 0.15rem;
+    height: 100%;
+    transition: all 0.5s;
+}
+
+.arrow::before {
+    left: -2.5px;
+    transform: rotate(45deg);
+    background-color: #394a6d;
+}
+
+.arrow::after {
+    left: 2.5px;
+    transform: rotate(-45deg);
+    background-color: #394a6d;
+}
+
+.open .arrow::before {
+    left: -2.5px;
+    transform: rotate(-45deg);
+}
+
+.open .arrow::after {
+    left: 2.5px;
+    transform: rotate(45deg);
+}
+
+
+
+/****** END CSS DROPDOWN RULES ******/
+
+
+
+/****** BEGIN CSS BUTTON FOOTER RULES ******/
+
+/* Rule for the button footer */
+#game-footer {
+	display: flex;
+	justify-content: space-around;
+	padding: 7.5px;	
+}
+
+
+/* Rule for the buttons */
+.fbutton {
+	background-color: transparent;
+	background-repeat: no-repeat;
+	border: none;
+	cursor: pointer;
+	overflow: hidden;
+	display: inline-block;
+	height: 50px;
+	font-size: 15px;
+	text-align:justify;
+
+	transition-duration: 0.4s;	
+}
+
+
+/*If hovering over the button and the button is not disabled*/
+.fbutton:hover:enabled {
+	background-color: #d3d3d3;	/*light grey*/;
+}
+
+
+/*If the button has been clicked or has had some event applied to it and is not disabled*/
+.fbutton:active:enabled {
+	background-color: #d3d3d3;
+	box-shadow:  0 5px #666;
+	transform:  translateY(4px);
+}
+
+
+/* Rule for the nested button images  */
+.fimg {
+	max-width:  125px;
+	max-height: 35px;
+	opacity: 1;
+	display:  block;
+	transition:  .5s ease;
+	backface-visibility: hidden;
+	width: auto;
+	height: auto;
+	margin:  0 auto;
+}
+
+
+/****** END CSS BUTTON FOOTER RULES ******/
+
+
+/****** BEGIN CSS MODAL RULES ******/
+
+/* Rule for the modal template */
+.modal-content {
+	display: none;
+	position: fixed;
+	top: 25%;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1;
+	background-color: #fafafa;
+	margin: 0 auto;
+	border: 3px solid #203354; /*#B6D0E2;*/
+	max-width:  70%;
+	padding: 4px;
+	height: fit-content;
+	text-align: center;
+}
+
+
+/* Rule for the modal text <p> element*/
+#modal-text {
+	font-size: 18px;
+	padding: 6px;
+}
+
+
+/* Rule for the word "close" on the bottom-right of the screen*/
+.close {
+	position: absolute;
+	color:  #aaa;
+	right: 0;
+	bottom: 0;
+	font-size:  18px;
+	font-weight:  bold;
+}
+
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+
+/* Overflow Hidden Rule */
+.overflow-hidden {
+	overflow: hidden !important;
+}
+
+
+/* Rule for the blocker */
+#blocker {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+/****** END CSS BUTTON FOOTER RULES ******/
+
+
+/****** BEGIN CSS LINE SVG RULES ******/
+
+/* Rule for the lines */
+#line-svg {
+	z-index: -1;
+	width:  100%;
+	height:  100%;
+	position:  absolute;
+	top: 0;
+	left: 0;
+}
+
+.tree-lines {
+	stroke-width: 1px;
+	stroke: #000000;
+	position: absolute;
+}
+
+/****** NED CSS LINE SVG RULES ******/
