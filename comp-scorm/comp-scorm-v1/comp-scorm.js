@@ -198,7 +198,6 @@ function clearAndFit() {
 
 	fetch();
 	makeLines();
-	//bubbleBack();
 }
 
 
@@ -351,31 +350,6 @@ function makeCircle(svgCircle, centreX, centreY, radius) {
 				  "r" : radius
 			});
 }
-
-
-/*
- * Draws the in-game 4-circle bubble background
-
-
-function bubbleBack() {
-    let circles = document.getElementsByClassName("circle-bg");
-    circles.forEach(circle => circle.style.display = "block");
-
-    let ctl = circles[0], 
-        cbl = circles[1], 
-        ctr = circles[2],
-        cbr = circles[3];
-
-    //makeCircle(ctl, )
-}*/
-
-
-/*
- * Animate the dropdowns when the game loads
- 
- function runDemo() {
- 	
- }*/
 
 
 /* 
