@@ -48,9 +48,10 @@ hr {
 	position: relative;
 	user-select: none;
 	margin: auto;
-	display: block;
 	font-size: 18px;
-	width: max-content;
+	width: min-content;
+	min-width:  150px;
+	white-space: nowrap;
 }
 
 .list-wrapper:hover {
@@ -75,6 +76,7 @@ hr {
     cursor: pointer;
     text-align: center;	
     background: #ffffff;
+    color: #3b3b3b;	
 }
 
 
@@ -82,16 +84,15 @@ hr {
 	position: absolute;
 	display: block;
 
-    border-width: 2px 0 2px 0;
-    border-style: solid;
-    border-color: #394a6d;
+    border: 2px solid #394a6d;
     background: #fff;
 
+    width: min-content;
 	transition: all 0.5s;
 	opacity: 0;
 	visibility: hidden;
 	pointer-events: none;
-	z-index: 2;
+	z-index: 1;
 }
 
 
@@ -101,14 +102,13 @@ hr {
     pointer-events: all;
 }
 
+
 .choice {
     position: relative;
     display: block;
-    padding: 0 22px 0 22px;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 300;
     color: #3b3b3b;
-    line-height: 60px;
     cursor: pointer;
     transition: all 0.5s;
 }
@@ -122,13 +122,13 @@ hr {
 
 .choice:hover {
     cursor: pointer;
-    background-color: #f5ea92;
+    background-color: #b2b2b2;
 }
 
 
 .choice.selected {
     color: #ffffff;
-    background-color: #f5dd29;
+    background-color: #305c91;
 }
 
 
@@ -139,9 +139,10 @@ hr {
 
 #bottom-lists {
 	display: flex;
-	flex-flow: row nowrap;
+	flex-direction: row;
 	justify-content: space-evenly;
 	align-items: center;
+	flex-basis: 15%;
 }
 
 
@@ -273,7 +274,7 @@ hr {
 	top: 25%;
 	left: 50%;
 	transform: translateX(-50%);
-	z-index: 1;
+	z-index: 2;
 	background-color: #fafafa;
 	margin: 0 auto;
 	border: 3px solid #203354; /*#B6D0E2;*/
