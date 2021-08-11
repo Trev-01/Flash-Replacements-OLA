@@ -11,7 +11,7 @@ const dropdowns = [
 
 // Stack for the selected lists (in the order they were selected)
 var listStack = [];
-var listIndex = 0;	// index for the current item in the stack; current list is at listIndex - 1
+var listIndex = -1;	// index for the current item in the stack; current list is at listIndex
 
 /*
  * Returns the <div> "option" element if it has the "selected" class in its classList 
@@ -65,8 +65,8 @@ for (const dropdown of dropdowns) {
   * Window event listener: closes the dropdown if it is clicked outside
   */
 window.addEventListener("click", function(event) {
-  	if (listStack[listIndex - 1] != null) {
-  		const select = listStack[listIndex - 1].querySelector(".list-select");
+  	if (listStack[listIndex] != null) {
+  		const select = listStack[listIndex].querySelector(".list-select");
   		if (!select.contains(event.target))
   		{
   			select.classList.remove("open");
@@ -101,8 +101,8 @@ function demo(dropdown, lStr) {
 window.onload = function() {
 	makeLines();
 
-	const OPEN_WAIT = 1500;
-	const BUFFER = 250;
+	const OPEN_WAIT = 1000;
+	const BUFFER = 75;
 
 	let openAndPick = (dropdown, lStr, interval) => window.setTimeout(function() { demo(dropdown, lStr); }, interval);
 	let waitAndLock = (dropdown, interval) => window.setTimeout(function() { dropdown.querySelector(".list-select").classList.toggle("open"); }, interval);
@@ -110,9 +110,14 @@ window.onload = function() {
 	let opener = ["Verb", "Noun", "Preposition"];
 
 	for (let i = 0; i < dropdowns.length; i++) {
-		openAndPick(dropdowns[i], opener[i], OPEN_WAIT * (i + 1) + BUFFER * i);
-		waitAndLock(dropdowns[i], OPEN_WAIT * (i + 2));
+		let openTime = OPEN_WAIT * (i + 1) + BUFFER * i;
+		let closeTime = OPEN_WAIT * (i + 2);
+
+		openAndPick(dropdowns[i], opener[i], openTime);
+		waitAndLock(dropdowns[i], closeTime);
 	}
+
+	window.setTimeout(function() { nextBtn.disabled = false; }, OPEN_WAIT * 4.5);
 }
 
 
@@ -348,8 +353,8 @@ function mapToValue(key) {
 	var val = "Word Category";
 	switch (key) {
 		case lCat.NOUN:
-			val = "Noun";
-			break;
+			val = "Noun"
+;			break;
 		case lCat.VERB:
 			val = "Verb";
 			break;
@@ -431,6 +436,8 @@ function check() {
 					selectOption(options.querySelectorAll(".choice")[mapToIndex(pairs[j][1])]);
 				}
 
+				indicesOfWrong.add(i);
+
 			} else {
 				attempts--;
 				showModal("Not quite. Try again.", true);
@@ -459,14 +466,54 @@ function check() {
 function next() {
 	if (qCount == 0)
 		clearAndFit();
+	else if (qCount == TOTAL_QS) {
+		document.getElementById("game-box").innerHTML = "";
+		document.getElementById("score-table").style.visibility = "visible";
+		//makeScoreTable();
 
-	else if (qCount == TOTAL_QS)
-		document.getElementById("play-area").innerHTML = "";
-		
-
-	else {
+	} else {
 		countUp();
 		fetch();
 		attempts = 2;
 	}
 }
+
+
+/****** SCORE TABLE ******/
+
+const indicesOfWrong = new Set(); 
+
+/*
+ * Shows the score of the user, as well as all the words, their components, their lexical categories, and if the user got it correct or not.
+ */
+/* 
+function makeScoreTable() {
+	let scoreTable = document.getElementById("score-table");
+	for (let i = 0; i < words.length; i++) {
+		let newRow = scoreTable.insertRow(i + 1);
+		
+		let wordObj = words[i];
+		const PAIR = 2;
+
+            for (let j = 0; j < PAIR; j++) {
+            	let newCell = newRow.insertCell(j);
+			let cellStr = wordObj.getWordPair()[j] 
+			            + " = "
+			            + wordObj.getLeftPair()[j],
+			            + " + "
+			            + wordObj.getRightPair()[j];
+            }
+
+            let answer = "Incorrect", highlight = "red";
+            if (!indicesOfWrong.has(i))
+            {
+            	answer = "Correct";
+            	highlight = "green";
+            }
+            
+
+            let answerCell = newRow.insertCell(PAIR);
+            answerCell.innerHTML = answer;
+            answerCell.style.color = highlight;
+	}
+}*/
