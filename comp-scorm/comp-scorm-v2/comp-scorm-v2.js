@@ -326,7 +326,9 @@ function showInstructions() {
  * Shows the finish modal and screen
 */
 function end() {
-	showModal("Congratulations! You have completed the exercise. Press the 'next' button to continue.", true);
+	nextBtn.disabled = true;
+	checkBtn.disabled = true;
+	showModal("Congratulations! You have completed the exercise. You may now close the tab or the browser window.", true);
 }
 
 /*
@@ -427,6 +429,9 @@ function check() {
 						   + " + "
 						   + pairs[2][1];
 
+			     	if (qCount == TOTAL_QS) 
+			     		ANSWER += "<br><br>You have completed the exercise. You may now close the tab or the browser window."
+
    				showModal(ANSWER, true);
 				nextBtn.disabled = false;
 				checkBtn.disabled = true;
@@ -435,8 +440,6 @@ function check() {
 					let options = dropdowns[j].querySelector(".list-options");
 					selectOption(options.querySelectorAll(".choice")[mapToIndex(pairs[j][1])]);
 				}
-
-				indicesOfWrong.add(i);
 
 			} else {
 				attempts--;
@@ -451,13 +454,24 @@ function check() {
 	if (allCorrect) {
 		if (qCount == TOTAL_QS) 
 			end();
-		else
+		
+		else {
 			showModal("Correct. You may continue to the next question.", true);
-
-		nextBtn.disabled = false;
-		checkBtn.disabled = true;
+			nextBtn.disabled = false;
+			checkBtn.disabled = true;
+		}
 	}
 }
+
+
+/*
+ * Enable word check with the 'ENTER' key (keycode == 13)
+ */
+document.addEventListener("keyup", function(event) {
+	if (event.keyCode == 13) 
+		checkBtn.click();
+	event.preventDefault();
+});
 
 /* 
  * if count is 0: calls clearAndFit()
@@ -466,27 +480,24 @@ function check() {
 function next() {
 	if (qCount == 0)
 		clearAndFit();
-	else if (qCount == TOTAL_QS) {
-		document.getElementById("game-box").innerHTML = "";
-		document.getElementById("score-table").style.visibility = "visible";
-		//makeScoreTable();
-
-	} else {
-		countUp();
-		fetch();
-		attempts = 2;
+      else {
+		if (qCount != TOTAL_QS) {
+			countUp();
+			fetch();
+			attempts = 2;
+		}
 	}
 }
 
 
 /****** SCORE TABLE ******/
-
-const indicesOfWrong = new Set(); 
+/*
+const incorrect = new Set(); */
 
 /*
  * Shows the score of the user, as well as all the words, their components, their lexical categories, and if the user got it correct or not.
  */
-/* 
+ /*
 function makeScoreTable() {
 	let scoreTable = document.getElementById("score-table");
 	for (let i = 0; i < words.length; i++) {
@@ -502,10 +513,11 @@ function makeScoreTable() {
 			            + wordObj.getLeftPair()[j],
 			            + " + "
 			            + wordObj.getRightPair()[j];
+	            newCell.innerHTML = cellStr;
             }
 
-            let answer = "Incorrect", highlight = "red";
-            if (!indicesOfWrong.has(i))
+            /*var answer = "Incorrect", highlight = "red";
+            if (!incorrect.has(i))
             {
             	answer = "Correct";
             	highlight = "green";
@@ -516,4 +528,6 @@ function makeScoreTable() {
             answerCell.innerHTML = answer;
             answerCell.style.color = highlight;
 	}
-}*/
+}
+
+makeScoreTable();*/
