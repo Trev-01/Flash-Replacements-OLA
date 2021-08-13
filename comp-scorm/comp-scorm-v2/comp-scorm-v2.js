@@ -463,16 +463,6 @@ function check() {
 	}
 }
 
-
-/*
- * Enable word check with the 'ENTER' key (keycode == 13)
- */
-document.addEventListener("keyup", function(event) {
-	if (event.keyCode == 13) 
-		checkBtn.click();
-	event.preventDefault();
-});
-
 /* 
  * if count is 0: calls clearAndFit()
  * else: fetches new words, updates screen
@@ -488,46 +478,3 @@ function next() {
 		}
 	}
 }
-
-
-/****** SCORE TABLE ******/
-/*
-const incorrect = new Set(); */
-
-/*
- * Shows the score of the user, as well as all the words, their components, their lexical categories, and if the user got it correct or not.
- */
- /*
-function makeScoreTable() {
-	let scoreTable = document.getElementById("score-table");
-	for (let i = 0; i < words.length; i++) {
-		let newRow = scoreTable.insertRow(i + 1);
-		
-		let wordObj = words[i];
-		const PAIR = 2;
-
-            for (let j = 0; j < PAIR; j++) {
-            	let newCell = newRow.insertCell(j);
-			let cellStr = wordObj.getWordPair()[j] 
-			            + " = "
-			            + wordObj.getLeftPair()[j],
-			            + " + "
-			            + wordObj.getRightPair()[j];
-	            newCell.innerHTML = cellStr;
-            }
-
-            /*var answer = "Incorrect", highlight = "red";
-            if (!incorrect.has(i))
-            {
-            	answer = "Correct";
-            	highlight = "green";
-            }
-            
-
-            let answerCell = newRow.insertCell(PAIR);
-            answerCell.innerHTML = answer;
-            answerCell.style.color = highlight;
-	}
-}
-
-makeScoreTable();*/
