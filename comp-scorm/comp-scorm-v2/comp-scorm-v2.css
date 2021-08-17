@@ -44,6 +44,8 @@ hr {
 /****** BEGIN CSS DROPDOWN RULES ******/
 
 
+/*Rules for the wrapping div containing the custom dropdowns*/
+
 .list-wrapper {
 	position: relative;
 	user-select: none;
@@ -54,9 +56,34 @@ hr {
 	white-space: nowrap;
 }
 
+#main-list-wrapper {
+	margin-top: 20px;
+}
+
+#bottom-lists {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.bottom-list-inner {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 20px;
+	margin-bottom: 30px;
+	margin-top: 75px;
+}
+
+/*Rule for on-hover behaviour of the list wrapper*/
 .list-wrapper:hover {
 	background-color: #f5ea92;
 }
+
+
+/*.list-select, .list-box: rules for the visible, interactive dropdown element*/
 
 .list-select {
     position: relative;
@@ -79,6 +106,9 @@ hr {
     color: #3b3b3b;	
 }
 
+
+/*Rules for the custom dropdown items*/
+
 .list-options {
 	position: absolute;
 	display: block;
@@ -94,13 +124,11 @@ hr {
 	z-index: 1;
 }
 
-
 .list-select.open .list-options {
     opacity: 1;
     visibility: visible;
     pointer-events: all;
 }
-
 
 .choice {
     position: relative;
@@ -111,7 +139,6 @@ hr {
     cursor: pointer;
     transition: all 0.5s;
 }
-
 
 .placeholder {
     pointer-events: none;
@@ -124,42 +151,20 @@ hr {
     background-color: #b2b2b2;
 }
 
-
 .choice.selected {
     color: #ffffff;
     background-color: #305c91;
 }
 
-
-#main-list-wrapper {
-	margin-top: 20px;
-}
-
-
-#bottom-lists {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	align-items: center;
-}
-
-
-.bottom-list-inner {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin: 20px;
-	margin-bottom: 30px;
-	margin-top: 75px;
-}
-
-
+/*Rule for the words under the bottom two dropdown elements*/
 .list-label {
 	font-size: 24px;
 	color:  #767676;	
 	margin-top: 0;
 }
+
+
+/*Rules for the spinning arrow inside the list-box*/
 
 .arrow {
 	position: relative;
@@ -199,7 +204,6 @@ hr {
     left: 2.5px;
     transform: rotate(45deg);
 }
-
 
 
 /****** END CSS DROPDOWN RULES ******/
@@ -290,7 +294,7 @@ hr {
 }
 
 
-/* Rule for the word "close" on the bottom-right of the screen*/
+/* Rules for the word "close" on the bottom-right of the screen*/
 .close {
 	position: absolute;
 	color:  #aaa;
@@ -327,7 +331,7 @@ hr {
 }
 
 
-/****** END CSS BUTTON FOOTER RULES ******/
+/****** END CSS MODAL RULES ******/
 
 
 /****** BEGIN CSS LINE SVG RULES ******/

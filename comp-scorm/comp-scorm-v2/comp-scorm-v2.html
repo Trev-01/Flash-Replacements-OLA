@@ -23,10 +23,8 @@
 		<link rel="stylesheet" href="comp-scorm-v2.css?v=1.0">
 	</head>
 
-	<!-- BEGIN BODY -->
 
 	<body>
-
 		<!-- <div> element for the bounding box of the game -->		
 		<div id="game-box" align="center">
 			
@@ -56,8 +54,8 @@
 						* wrapper <div> (#XYZ-list-wrapper and .list-wrapper) to contain all of the internal <div> and <span> elements
 						* <div> elements (.list-select and .list-box) for the clickable box that opens like a drawer on click
 						* <span> containing the current selection of the user
-						* <div> representing the up/down pointer arrow
-						* <div> representing a vertical (downwards-facing) pullout drawer of options containing clickable <span> menu items
+						* <span> (.arrow) representing the up/down pointer arrow
+						* <div> (#main-options) representing a vertical (downwards-facing) pullout drawer of options containing clickable <span> menu items
 					-->
 					
 					<!-- main list node -->
@@ -78,8 +76,8 @@
 					</div> 			 <!-- #main-list-wrapper -->
 
 
+					<!-- <div> representing the bottom two dropdowns (children nodes) -->
 					<div id="bottom-lists">
-
 
 						<div class="bottom-list-inner">
 							<!-- left list node -->
@@ -166,9 +164,4 @@
 		<script src="comp-scorm-v2.js"></script>
 		
 	</body>
-
-	<!-- END BODY -->
-
 </html>
-
-

@@ -338,26 +338,11 @@ function makeLines() {
 	makeLine(l2, rootPos.mx, rightLeafPos.mx, rootPos.my, rightLeafPos.my);
 }
 
-
-/*
- * Helper Function for drawing an SVG circle
-*/
-function makeCircle(svgCircle, centreX, centreY, radius) {
-	setAttributes(svgCircle, 
-			{
-				  "cx": centreX,
-				  "cy": centreY,
-				  "r" : radius
-			});
-}
-
-
 /* 
  * Generate lines onload and show tree animation, and regenerate positions on window resize event
  */
 window.onload = function() {
 	makeLines();
-	runDemo();
 }
 
 window.onresize = makeLines;

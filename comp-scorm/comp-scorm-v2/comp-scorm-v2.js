@@ -9,9 +9,12 @@ const dropdowns = [
 	document.getElementById("right-list-wrapper")
 ]; 
 
-// Stack for the selected lists (in the order they were selected)
+/* 
+ * Stack for the selected lists (in the order they were selected)
+ * Index for the current item in the stack; current list is at listIndex
+ */
 var listStack = [];
-var listIndex = -1;	// index for the current item in the stack; current list is at listIndex
+var listIndex = -1;	
 
 /*
  * Returns the <div> "option" element if it has the "selected" class in its classList 
@@ -30,7 +33,9 @@ function selectOption(lOption) {
 	lOption.closest(".list-select").querySelector(".list-box span").textContent = lOption.textContent;
 }
 
-
+/*
+ * Selects the given option matching the query and (optional) the index (if the query yields > 1 results) for all dropdowns
+*/ 
 function selectOptionAll(query, plus=false, index=0) {
 	for (const dropdown of dropdowns) {
 		if (plus)
@@ -77,8 +82,6 @@ window.addEventListener("click", function(event) {
 });
 
 
-
-
 /****** SETUP ANIMATION ******/
 
 /*
@@ -121,8 +124,6 @@ window.onload = function() {
 }
 
 
-
-
 /****** BACKGROUND SVG DRAWING ******/
 
 /*
@@ -135,7 +136,6 @@ function lMidOf(elem) {
 	          my: rect.bottom});
 }
 
-
 /*
  * Gets the upper midpoint of the passed in element based on offset
  */
@@ -145,7 +145,6 @@ function uMidOf(elem) {
 	          my: rect.top })
 }
 
-
 /*
  * Helper function to set attributes of an element without multiple calls to Element.setAttribute()
  */
@@ -154,7 +153,6 @@ function uMidOf(elem) {
  		elem.setAttribute(key, attrs[key])
  	}
  }
-
 
 /*
  * Helper Function to draw a single line
@@ -166,7 +164,6 @@ function makeLine(svgLine, xs, xf, ys, yf) {
 				"y1": ys,
 				"y2": yf });
 }
-
 
 /*
 * Draws an SVG line at the given position
@@ -190,7 +187,6 @@ function makeLines() {
  */
 
 window.onresize = makeLines;
-
 
 
 /****** MAIN GAME MECHANICS ******/
@@ -280,7 +276,9 @@ const TOTAL_QS = 26;	// total number of questions
 var qCount = 0;			// the current question number
 var attempts = 2;		// initial number of attempts (per question) minus 1 (0 counts)
 
-// Updates count variable and changes the aligned-right text in the header
+/* 
+ * Updates count variable and changes the aligned-right text in the 
+*/
 function countUp() {
 	qCount++;
 	document.getElementById("header-right").textContent = "Question "
@@ -289,7 +287,9 @@ function countUp() {
 									    + TOTAL_QS.toString();	
 }
 
-// Displays reusable modal template with specific input text when requested
+/* 
+ * Displays reusable modal template with specific input text when requested
+*/
 function showModal(inputtxt, isShort) {
 	let modal = document.getElementById("modal-template"),
 	    blocker = document.getElementById("blocker");
@@ -309,7 +309,9 @@ function showModal(inputtxt, isShort) {
 	}
 }
 
-// Shows the instructions in the modal
+/* 
+ * Shows the instructions in the modal
+*/
 function showInstructions() {
 	let INSTRUCTIONS =  "The following exercise will give you practice with compounding. " 
 					   +  "You will be presented in the following screens with a series of words, "
@@ -352,23 +354,18 @@ function fetch() {
  * Unpacks the enum key by mapping it to its String value
 */ 
 function mapToValue(key) {
-	var val = "Word Category";
 	switch (key) {
 		case lCat.NOUN:
-			val = "Noun"
-;			break;
+			return "Noun";
 		case lCat.VERB:
-			val = "Verb";
-			break;
+			return "Verb";
 		case lCat.PREP:
-			val = "Preposition";
-			break;
+			return "Preposition";
 		case lCat.ADJV:
-			val = "Adjective";
-			break;
-		default: break;
+			return "Adjective";
+		default: 
+			return "Word Category";
 	}
-	return val;
 }
 
 /*
