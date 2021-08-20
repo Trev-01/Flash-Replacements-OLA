@@ -1,0 +1,178 @@
+<!doctype html>
+
+	<!-- HTML 5 boilerplate
+		* Sets language to English, character set to utf-8, and viewport of the page to the width of the device
+		* Setup for meta information: title [tab], description
+		* Setup for Open Graph (og) title, type, url, and description
+		* Links HTML file to CSS file
+	 -->
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+		<title>Compounding</title>
+		<meta name="description" content="Flash 32 Game: Compounding [ENGL]">
+
+		<meta property="og:title" content="Compounding">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="VALID_URL">
+		<meta property="og:description" content="Flash 32 Game: Compounding [ENGL]">
+
+		<link rel="stylesheet" href="Morph-Analysis.css?v=1.0">
+	</head>
+
+
+	<!-- BEGIN BODY -->
+
+	<body>
+
+		<!-- <div> element for the bounding box of the game -->
+		<div id="game-box" align="left">
+
+
+		<!-- <div> element for the game header -->
+		<div id="game-header">
+			<h3 id="header-left">Morphological Analysis</h3>
+			<h3 id="header-right">Introduction</h3>
+			<div style="clear: both;"></div>
+		</div>
+
+
+		<!-- <div> beginning introduction text -->
+		<div id="setup-text">
+			<p class="ins-text">This is a learning task, not a test. It helps you explore compounding. Don't worry if you don't get it right the first time. The idea is to learn.</p>
+			<p class="ins-text">For each word, try to perform the following 2 activities:</p>
+			<p class="ins-text">1. Identify the morphological boundaries for each word. Full instructions on how to do this are available by clicking on the "instructions" button at the bottom of the next screen.</p>
+            <p class="ins-text">2. Build a morphological tree by correctly combining lexical items to form a word. Full instructions on how to do this are avaiable by clicking on the "instructions" button at the bottom of the next screen.</p>
+            <p class="ins-text">To check your solution, click the "check" button. After three unsuccessful attempts, the correct answer will be provided for you. If you have answered the question correctly, move on to the next word by clicking on the next arrow at the bottom of the screen.</p>	
+            <p class="ins-text">The first word has been completed for you as an example.</p>
+		</div>
+
+		<!-- <div> element for the play area (reusable HTML template) -->
+		<div id="play-area">
+			<p id="main-word">Unhappier</p>
+			<hr>
+
+			<!-- <div> element for moveable objects to drag and drop -->	
+
+
+			<!-- circle tool -->
+			<div id="circle-with-text">
+				<p>Adjective</p>
+			</div>
+
+			<!--
+			<div id="circle-with-text">
+				<p>Adverb</p>
+			</div>
+
+			<div id="circle-with-text">
+				<p>Pronoun</p>
+			</div>
+
+			<div id="circle-with-text">
+				<p>Verb</p>
+			</div>
+
+			<div id="circle-with-text">
+				<p>Noun</p>
+			</div>
+		-->
+	
+			<!-- <div> element for the drop down tree in the play area -->
+			<div id="dd-tree">
+	
+				<!-- <div> element to encompass both of the bottom dropdown -->
+				<div id="dd-bottom">
+	
+					<!-- <div> element for bottom left dropdown for the first component -->
+					<div class="dd-c1">
+						
+						<label id="left-label" class="list-label" for="left-list">Un</label>
+
+						<!-- <div> class element wrapping ONLY the bottom dropdowns -->
+						<div class="dropdown-style">
+							<select id="c1" class="dropdown">
+								<option value="Word Category" disabled>Word Category</option>
+								<option value="Noun">Noun</option>
+								<option value="Verb">Verb</option>
+								<option value="Preposition">Preposition</option>
+								<option value="Adjective">Adjective</option>	
+								<option value="Af" selected>Af</option>
+							</select>
+						</div>
+	
+						
+					</div>
+	
+					<!-- <div> element for bottom right dropdown for the second component -->
+					<div class="dd-c2">
+
+						<label id="right-label" class="list-label" for="right-list">happi</label>
+
+						<!-- <div> class element wrapping ONLY the bottom dropdowns -->
+						<div class="dropdown-style">
+							<select id="c2" class="dropdown">
+								<option value="Word Category" disabled>Word Category</option>
+								<option value="Noun">Noun</option>
+								<option value="Verb">Verb</option>
+								<option value="Preposition">Preposition</option>
+								<option value="Adjective" selected>Adjective</option>
+								<option value="Af">Af</option>	
+							</select>
+						</div>
+
+						
+					</div>
+	
+					<!-- <div> element for bottom right dropdown for the second component -->
+						<div class="dd-c3">
+
+							<label id="right-label" class="list-label" for="right-list">er</label>
+
+							<!-- <div> class element wrapping ONLY the bottom dropdowns -->
+							<div class="dropdown-style">
+								<select id="c3" class="dropdown">
+									<option value="Word Category" disabled>Word Category</option>
+									<option value="Noun">Noun</option>
+									<option value="Verb">Verb</option>
+									<option value="Preposition">Preposition</option>
+									<option value="Adjective">Adjective</option>
+									<option value="Af" Selected>Af</option>	
+								</select>
+							</div>
+	
+							
+						</div>
+
+				</div>
+	
+			</div>
+	
+		</div>
+
+		<!-- <div> element for button footer -->
+			<div id="game-footer">
+				<button id="ins-button" class="fbutton" onclick="showInstructions()">
+                    <img class="fimg" src="internal/instrbutton_img.png" align="left"/> Instructions</button>
+                <button id="next-button" class="fbutton" onclick="next()">
+					<img class="fimg" src="internal/codeplaceholder_img.png" align="left"/> Next</button>
+                <button id="check-button" class="fbutton" onclick="check()" disabled>
+                    <img class="fimg" src="internal/checkbutton_img.png" align="left"/>Check</button>
+				
+
+
+		
+	<!-- END BODY -->
+
+    <!-- BEGIN BODY -->
+
+    <body>
+        <!-- Links JS file -->
+		<script src="Morph-Analysis.js"></script>
+	</body>
+
+
+</html>
